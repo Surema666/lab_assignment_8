@@ -29,7 +29,7 @@ void heapify(int arr[], int n, int i)
 
 void heapSort(int arr[], int n)
 {
-    extraMemoryAllocated = 0;
+    extraMemoryAllocated = sizeof(int) *n;
 
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
@@ -134,17 +134,12 @@ void printArray(int pData[], int dataSz)
 {
     int i, sz = dataSz - 100;
     printf("\tData:\n\t");
-    for (i = 0; i < 100; ++i)
+    for (i = 0; i < dataSz; ++i)
     {
         printf("%d ", pData[i]);
     }
     printf("\n\t");
 
-    for (i = sz; i < dataSz; ++i)
-    {
-        printf("%d ", pData[i]);
-    }
-    printf("\n\n");
 }
 
 int main(void)
@@ -175,7 +170,7 @@ int main(void)
         heapSort(pDataCopy, dataSz);
         end = clock();
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-        printf("\truntime\t\t\t: %.1lf\n", cpu_time_used);
+        printf("\truntime\t\t\t: %.3lf\n", cpu_time_used);
         printf("\textra memory allocated\t: %d\n", extraMemoryAllocated * sizeof(int));
         printArray(pDataCopy, dataSz);
 
@@ -186,7 +181,7 @@ int main(void)
         mergeSort(pDataCopy, 0, dataSz - 1);
         end = clock();
         cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-        printf("\truntime\t\t\t: %.1lf\n", cpu_time_used);
+        printf("\truntime\t\t\t: %.3lf\n", cpu_time_used);
         printf("\textra memory allocated\t: %d\n", extraMemoryAllocated * sizeof(int));
         printArray(pDataCopy, dataSz);
 
